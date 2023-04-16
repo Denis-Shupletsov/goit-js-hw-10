@@ -1,8 +1,12 @@
-const countriesBase = 'https://restcountries.com/v3.1/name/';
-const countriesInfoFields = 'fields=name,capital,population,flags,languages';
+const allCountries = 'https://restcountries.com/v3.1/name/';
 
-export function fetchCountries(name) {
-    return fetch(`${countriesBase}${name}?${countriesInfoFields}`)
-        .then(response => response.json())
-        .catch(error => console.log(error));
-}
+const countryInformation = 'fields=name,capital,population,flags,languages';
+
+export async function fetchCountries(name) {
+    try {
+        const response = await fetch(`${allCountries}${name}?${countryInformation}`);
+        return await response.json();
+    } catch (error) {
+        return console.log(error);
+    }
+};
